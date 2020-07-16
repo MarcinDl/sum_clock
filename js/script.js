@@ -1,55 +1,45 @@
 
 var timeleft;
 var downloadTimer;
-var countdown = document.getElementById("countdown").innerHTML;
 
 
 function downloadTimer(timeleft) {
+    document.getElementById("progressBar").max = timeleft;
     setInterval(function () {
         if (timeleft <= 0) {
             clearInterval(downloadTimer);
-            document.getElementById("countdown").innerHTML = "Nowa tura za niedługo";
         } else {
-            document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+            document.getElementById("countdown").innerHTML = timeleft + " s";
+            document.getElementById("progressBar").value = document.getElementById("progressBar").max - timeleft;
+            console.log(timeleft)
         }
-        timeleft -= 1;
+        timeleft--;
     }, 1000);
 }
 
 document.getElementById('button').addEventListener('click', buttonClick);
 
 function buttonClick() {
-    console.log("begin")
+    console.log("begin");
+    this.disabled = true;
     downloadTimer(15);
-    new Audio('./../asset/sound/ring.mp3').play()
-    sequence().then(firstRing).then(secondRing)
+    new Audio('./../asset/sound/ring.mp3').play();
+    firstRing()
 }
+
+
 const firstRing = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            console.log("first")
-            downloadTimer(30);
-            new Audio('./../asset/sound/ring.mp3').play();
-            resolve();
-        }, 15000)
-    })
+    setTimeout(() => {
+        new Audio('./../asset/sound/ring.mp3').play();
+        secondRing()
+    }, 60000)
 }
 const secondRing = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            console.log("second")
-            new Audio('./../asset/sound/ring.mp3').play();
-
-            resolve();
-        }, 30000)
-    })
+    setTimeout(() => {
+        new Audio('./../asset/sound/ring.mp3').play();
+        firstRing();
+    }, 60000)
 }
-
-const sequence = () => {
-    return new Promise((resolve, reject) => {
-        resolve();
-    });
-};
 
 
 
