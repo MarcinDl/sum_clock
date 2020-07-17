@@ -34,15 +34,15 @@ function buttonClick() {
 
 const firstRing = () => {
     console.log("PIERWSZA FUNKCJA");
-    document.getElementById("proba").textContent = "Aktualna wartość to 10 min";
+    document.getElementById("proba").textContent = " 10 min";
     let timeleft007 = 10;
     document.getElementById("progressBar").max = 10;
-    document.getElementById("countdown").textContent = '10'
+    document.getElementById("countdown").textContent = '10s'
     if (!stop) {
 
         firstSetTime = setInterval(() => {
             timeleft007--;
-            document.getElementById("countdown").textContent = timeleft007;
+            document.getElementById("countdown").textContent = timeleft007 + "s";
             console.log("z pierwszej funkcji", timeleft007);
             document.getElementById("progressBar").value = document.getElementById("progressBar").max - timeleft007;
         }, 1000);
@@ -57,14 +57,14 @@ const firstRing = () => {
 
 const secondRing = () => {
     console.log("DRUGA FUNKCJA");
-    document.getElementById("proba").textContent = "Aktualna wartość to 5 min";
+    document.getElementById("proba").textContent = " 5 min";
     let timeleft007 = 10;
-    document.getElementById("countdown").textContent = '10';
+    document.getElementById("countdown").textContent = '10s';
     document.getElementById("progressBar").max = 10;
     if (!stop) {
         //////////////////////////////////////////////////////////////////////////////////////
         secondSetTime = setInterval(() => {
-            document.getElementById("countdown").textContent = timeleft007 - 1;
+            document.getElementById("countdown").textContent = timeleft007 - 1 + "s";
             timeleft007--;
             console.log("z drugiej funkcji", timeleft007);
             document.getElementById("progressBar").value = document.getElementById("progressBar").max - timeleft007;
@@ -88,9 +88,8 @@ document.getElementById("clear").addEventListener("click", function () {
     stop = true;
     clearTimeout(firstSetTime1);
     clearTimeout(secondSetTime1);
-    clearInterval(firstSetTime)
-    clearInterval(secondSetTime)
-
+    clearInterval(firstSetTime);
+    clearInterval(secondSetTime);
     document.getElementById("progressBar").value = 0;
     document.getElementById("progressBar").max = 0;
 

@@ -10,12 +10,32 @@
 </head>
 
 <body>
-    <div id="proba"></div>
-    <progress value="0" id="progressBar"></progress>
-    Czas do najbliższego dzwonka:
-    <div id="countdown">jeszcze nie rozpocząto</div>
-    <button id="button">Rozpocznij odliczanie</button>
-    <button id="clear">Wyzeruj licznik</button>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="./asset/images/cdism.png" style="width: 25%" alt="Logo CDiSM">
+        </div>
+        <div class="sessionInfo">
+            <span>Długość trwania sesji: </span>
+        </div>
+        <div class="sessionTIme">
+            <span id="proba">10min/5min</span>
+        </div>
+        <div class="leftInfo">
+            <span>Czas do końca sesji: </span>
+        </div>
+        <div class="leftTime">
+            <span id="countdown">jeszcze nie rozpocząto</span>
+        </div>
+        <div class="progressBar">
+            <progress value="0" id="progressBar"></progress>
+        </div>
+        <div class="buttonStart">
+            <button id="button">Rozpocznij odliczanie</button>
+        </div>
+        <div class="buttonClear">
+            <button id="clear">Wyzeruj licznik</button>
+        </div>
+    </div>
 
     <script src="js/script.js"></script>
 </body>
