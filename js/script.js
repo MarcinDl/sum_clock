@@ -5,23 +5,8 @@ var downloadTimer;
 let firstSetTime, secondSetTime;
 let firstSetTime1, secondSetTime1;
 let stop;
-let zmienna =
 
-    // function downloadTimer(timeleft) {
-    //     document.getElementById("progressBar").max = timeleft;
-    //     setInterval(function () {
-    //         if (timeleft <= 0) {
-    //             clearInterval(downloadTimer);
-    //         } else {
-    //             document.getElementById("countdown").innerHTML = timeleft + " s";
-    //             document.getElementById("progressBar").value = document.getElementById("progressBar").max - timeleft;
-    //             console.log(timeleft)
-    //         }
-    //         timeleft--;
-    //     }, 1000);
-    // }
-
-    document.getElementById('button').addEventListener('click', buttonClick);
+document.getElementById('button').addEventListener('click', buttonClick);
 
 function buttonClick() {
     stop = false;
