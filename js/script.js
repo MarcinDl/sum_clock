@@ -91,4 +91,9 @@ document.getElementById("clear").addEventListener("click", function () {
     clearInterval(firstSetTime)
     clearInterval(secondSetTime)
 
+    document.getElementById("progressBar").value = 0;
+    document.getElementById("progressBar").max = 0;
+
+
+
 })
