@@ -1,7 +1,5 @@
 
-var timeleft;
-var timeleft1;
-var downloadTimer;
+var timeleft, timeleft1, downloadTimer;
 let firstSetTime, secondSetTime;
 let firstSetTime1, secondSetTime1;
 let stop;
@@ -10,56 +8,49 @@ document.getElementById('button').addEventListener('click', buttonClick);
 
 function buttonClick() {
     stop = false;
-    console.log("begin");
     this.disabled = true;
+    document.getElementById("countdown").textContent = '10s'
     new Audio('./../asset/sound/ringbell.mp3').play();
     firstRing()
 }
 
 
 const firstRing = () => {
-    console.log("PIERWSZA FUNKCJA");
-    document.getElementById("proba").textContent = " 10 min";
-    let timeleft007 = 10;
+    document.getElementById("sessionTime").textContent = " 10 min";
+    let timeleft10 = 10;
     document.getElementById("progressBar").max = 10;
-    document.getElementById("countdown").textContent = '10s'
     if (!stop) {
-
         firstSetTime = setInterval(() => {
-            timeleft007--;
-            document.getElementById("countdown").textContent = timeleft007 + "s";
-            console.log("z pierwszej funkcji", timeleft007);
-            document.getElementById("progressBar").value = document.getElementById("progressBar").max - timeleft007;
+            timeleft10--;
+            document.getElementById("countdown").textContent = timeleft10 + "s";
+            document.getElementById("progressBar").value = document.getElementById("progressBar").max - timeleft10;
         }, 1000);
         firstSetTime1 = setTimeout(() => {
             new Audio('./../asset/sound/ringbell.mp3').play();
             secondRing();
             clearInterval(firstSetTime)
 
-        }, 10000)
+        }, timeleft10 * 1000)
     }
 }
 
 const secondRing = () => {
-    console.log("DRUGA FUNKCJA");
-    document.getElementById("proba").textContent = " 5 min";
-    let timeleft007 = 10;
-    document.getElementById("countdown").textContent = '10s';
-    document.getElementById("progressBar").max = 10;
+    document.getElementById("sessionTime").textContent = " 5 min";
+    let timeleft5 = 5;
+    document.getElementById("countdown").textContent = '0s';
+    document.getElementById("progressBar").max = 5;
     if (!stop) {
-        //////////////////////////////////////////////////////////////////////////////////////
         secondSetTime = setInterval(() => {
-            document.getElementById("countdown").textContent = timeleft007 - 1 + "s";
-            timeleft007--;
-            console.log("z drugiej funkcji", timeleft007);
-            document.getElementById("progressBar").value = document.getElementById("progressBar").max - timeleft007;
+            document.getElementById("countdown").textContent = timeleft5 - 1 + "s";
+            timeleft5--;
+            document.getElementById("progressBar").value = document.getElementById("progressBar").max - timeleft5;
         }, 1000);
 
         secondSetTime1 = setTimeout(() => {
             new Audio('./../asset/sound/ringbell.mp3').play();
             firstRing();
             clearInterval(secondSetTime)
-        }, 10000)
+        }, timeleft5 * 1000)
     }
 }
 
