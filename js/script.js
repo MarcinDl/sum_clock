@@ -21,7 +21,7 @@ function buttonClick() {
     console.log("sekundy", sekundy)
     document.getElementById("countdownProper").textContent = minuty0 + " min " + sekundy0 + " sec";
 
-    new Audio('./asset/sound/ringbell.mp3').play();
+    new Audio('/asset/sound/ringbell.mp3').play();
     firstRing(czasPierwszejFunkcji)
 }
 
