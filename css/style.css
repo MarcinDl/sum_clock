@@ -109,8 +109,8 @@ body {
   -ms-grid-column-span: 2;
   -ms-grid-column: 1;
       grid-column: 1 / span 2;
-  -ms-grid-row: 5;
-      grid-row: 5;
+  -ms-grid-row: 4;
+      grid-row: 4;
 }
 
 .buttonStart button {
@@ -118,12 +118,27 @@ body {
 }
 
 .buttonClear {
-  -ms-grid-column-span: 2;
   -ms-grid-column: 1;
-      grid-column: 1 / span 2;
-  -ms-grid-row: 6;
-      grid-row: 6;
+      grid-column: 1;
+  -ms-grid-row: 5;
+      grid-row: 5;
   text-align: center;
+}
+
+.buttonClear button {
+  width: 80%;
+}
+
+.buttonHold {
+  -ms-grid-column: 2;
+      grid-column: 2;
+  -ms-grid-row: 5;
+      grid-row: 5;
+  text-align: center;
+}
+
+.buttonHold button {
+  width: 80%;
 }
 
 button {

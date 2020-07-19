@@ -1,74 +1,114 @@
 
-var timeleft, timeleft1, downloadTimer;
+var timeleft, downloadTimer;
 let firstSetTime, secondSetTime;
 let firstSetTime1, secondSetTime1;
-let stop;
-
+let stop; var value = 0;
+var value;
+let wykrycieFunkcji = "";
+let probe = false;
 document.getElementById('button').addEventListener('click', buttonClick);
-
+var czasPierwszejFunkcji = 6;
+var czasDrugiejFunkcji = 3;
 function buttonClick() {
     stop = false;
     this.disabled = true;
-    document.getElementById("countdown").textContent = '10s'
+    document.getElementById("countdown").textContent = czasPierwszejFunkcji
     new Audio('./../asset/sound/ringbell.mp3').play();
-    firstRing()
+    firstRing(czasPierwszejFunkcji)
 }
 
+let timeleft10;
+let timeleft5;
 
-const firstRing = () => {
+const firstRing = (czasPierwszejFunkcji) => {
+    wykrycieFunkcji = "pierwsza"
+    console.log(wykrycieFunkcji);
     document.getElementById("sessionTime").textContent = " 10 min";
-    let timeleft10 = 10;
-    document.getElementById("progressBar").max = 10;
+    document.getElementById("countdown").textContent = czasPierwszejFunkcji;
+    document.getElementById("hold").textContent = "Wstrzymaj odliczanie";
+    console.log("countdown-textContent", document.getElementById("countdown").textContent);
+    console.log("czasPierwszejFunkcji", czasPierwszejFunkcji);
+
     if (!stop) {
         firstSetTime = setInterval(() => {
-            timeleft10--;
-            document.getElementById("countdown").textContent = timeleft10 + "s";
-            document.getElementById("progressBar").value = document.getElementById("progressBar").max - timeleft10;
+            czasPierwszejFunkcji--;
+            document.getElementById("countdown").textContent = czasPierwszejFunkcji;
+            console.log("w setInterval", czasPierwszejFunkcji)
         }, 1000);
         firstSetTime1 = setTimeout(() => {
             new Audio('./../asset/sound/ringbell.mp3').play();
-            secondRing();
             clearInterval(firstSetTime)
+            secondRing(czasDrugiejFunkcji);
+        }, czasPierwszejFunkcji * 1000)
 
-        }, timeleft10 * 1000)
+
     }
 }
 
-const secondRing = () => {
+const secondRing = (czasDrugiejFunkcji) => {
+    wykrycieFunkcji = "druga";
+    console.log(wykrycieFunkcji);
     document.getElementById("sessionTime").textContent = " 5 min";
-    let timeleft5 = 5;
-    document.getElementById("countdown").textContent = '0s';
-    document.getElementById("progressBar").max = 5;
+    document.getElementById("countdown").textContent = czasDrugiejFunkcji;
+    document.getElementById("hold").textContent = "Wstrzymaj odliczanie";
+    console.log("countdown-textContent", document.getElementById("countdown").textContent);
+    console.log("czasPierwszejFunkcji", czasDrugiejFunkcji);
     if (!stop) {
         secondSetTime = setInterval(() => {
-            document.getElementById("countdown").textContent = timeleft5 - 1 + "s";
-            timeleft5--;
-            document.getElementById("progressBar").value = document.getElementById("progressBar").max - timeleft5;
+            czasDrugiejFunkcji--;
+            document.getElementById("countdown").textContent = czasDrugiejFunkcji;
+            console.log("w setInterval", czasDrugiejFunkcji)
+
         }, 1000);
 
         secondSetTime1 = setTimeout(() => {
             new Audio('./../asset/sound/ringbell.mp3').play();
-            firstRing();
+
+            console.log("setimeoout", czasDrugiejFunkcji);
             clearInterval(secondSetTime)
-        }, timeleft5 * 1000)
+            firstRing(czasPierwszejFunkcji);
+        }, czasDrugiejFunkcji * 1000)
     }
 }
 
-
-
-
 document.getElementById("clear").addEventListener("click", function () {
-    document.getElementById("proba").textContent = "Brak uruchomionego licznika";
+    document.getElementById("sessionTime").textContent = "10min/5min";
     document.getElementById("countdown").textContent = "Odliczanie wstrzymane";
+    document.getElementById("hold").textContent = "Wstrzymaj odliczanie";
     document.getElementById("button").disabled = false;
     stop = true;
     clearTimeout(firstSetTime1);
     clearTimeout(secondSetTime1);
     clearInterval(firstSetTime);
-    clearInterval(secondSetTime);
-    document.getElementById("progressBar").value = 0;
-    document.getElementById("progressBar").max = 0;
+    clearInterval(secondSetTime)
+})
+
+
+document.getElementById("hold").addEventListener("click", function () {
+
+    if (probe == false) {
+
+        value = document.getElementById("countdown").textContent
+        document.getElementById("hold").textContent = "Wznów odliczanie";
+        clearTimeout(firstSetTime1);
+        clearTimeout(secondSetTime1);
+        clearInterval(firstSetTime);
+        clearInterval(secondSetTime);
+        probe = true;
+    }
+    else {
+
+        if (wykrycieFunkcji == "pierwsza") {
+            firstRing(value);
+        }
+        else if (wykrycieFunkcji == "druga") {
+            secondRing(value);
+        }
+        probe = false;
+    }
 
 
 
 })
+
+
