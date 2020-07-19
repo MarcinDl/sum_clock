@@ -11,6 +11,7 @@ var minuty2, sekundy2;
 document.getElementById('button').addEventListener('click', buttonClick);
 var czasPierwszejFunkcji = 600; //in seconds
 var czasDrugiejFunkcji = 300; //in seconds
+var ringBellPath = './asset/sound/ringbell.mp3';
 function buttonClick() {
     stop = false;
     this.disabled = true;
@@ -21,7 +22,7 @@ function buttonClick() {
     console.log("sekundy", sekundy)
     document.getElementById("countdownProper").textContent = minuty0 + " min " + sekundy0 + " sec";
 
-    new Audio('/asset/sound/ringbell.mp3').play();
+    new Audio(ringBellPath).play();
     firstRing(czasPierwszejFunkcji)
 }
 
@@ -50,7 +51,7 @@ const firstRing = (czasPierwszejFunkcji) => {
             console.log("w setInterval", czasPierwszejFunkcji)
         }, 1000);
         firstSetTime1 = setTimeout(() => {
-            new Audio('/asset/sound/ringbell.mp3').play();
+            new Audio(ringBellPath).play();
             clearInterval(firstSetTime)
             secondRing(czasDrugiejFunkcji);
         }, czasPierwszejFunkcji * 1000)
@@ -81,7 +82,7 @@ const secondRing = (czasDrugiejFunkcji) => {
         }, 1000);
 
         secondSetTime1 = setTimeout(() => {
-            new Audio('/asset/sound/ringbell.mp3').play();
+            new Audio(ringBellPath).play();
 
             console.log("setimeoout", czasDrugiejFunkcji);
             clearInterval(secondSetTime)
