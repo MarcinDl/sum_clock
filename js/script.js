@@ -15,7 +15,13 @@ function buttonClick() {
     stop = false;
     this.disabled = true;
     document.getElementById("countdown").textContent = czasPierwszejFunkcji
-    new Audio('./../asset/sound/ringbell.mp3').play();
+    minuty0 = Math.floor(czasPierwszejFunkcji % 3600 / 60);
+    sekundy0 = Math.floor(czasPierwszejFunkcji % 3600 % 60);
+    console.log("minuty", minuty)
+    console.log("sekundy", sekundy)
+    document.getElementById("countdownProper").textContent = minuty0 + " min " + sekundy0 + " sec";
+
+    new Audio('../asset/sound/ringbell.mp3').play();
     firstRing(czasPierwszejFunkcji)
 }
 
