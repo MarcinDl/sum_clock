@@ -6,9 +6,11 @@ let stop; var value = 0;
 var value;
 let wykrycieFunkcji = "";
 let probe = false;
+var minuty, sekundy;
+var minuty2, sekundy2;
 document.getElementById('button').addEventListener('click', buttonClick);
-var czasPierwszejFunkcji = 6;
-var czasDrugiejFunkcji = 3;
+var czasPierwszejFunkcji = 60; //in seconds
+var czasDrugiejFunkcji = 30; //in seconds
 function buttonClick() {
     stop = false;
     this.disabled = true;
@@ -33,6 +35,12 @@ const firstRing = (czasPierwszejFunkcji) => {
         firstSetTime = setInterval(() => {
             czasPierwszejFunkcji--;
             document.getElementById("countdown").textContent = czasPierwszejFunkcji;
+            console.log("czasPierwszejFunkcji", czasPierwszejFunkcji)
+            minuty = Math.floor(czasPierwszejFunkcji % 3600 / 60);
+            sekundy = Math.floor(czasPierwszejFunkcji % 3600 % 60);
+            console.log("minuty", minuty)
+            console.log("sekundy", sekundy)
+            document.getElementById("countdownProper").textContent = minuty + " min " + sekundy + " sec";
             console.log("w setInterval", czasPierwszejFunkcji)
         }, 1000);
         firstSetTime1 = setTimeout(() => {
@@ -52,11 +60,16 @@ const secondRing = (czasDrugiejFunkcji) => {
     document.getElementById("countdown").textContent = czasDrugiejFunkcji;
     document.getElementById("hold").textContent = "Wstrzymaj odliczanie";
     console.log("countdown-textContent", document.getElementById("countdown").textContent);
-    console.log("czasPierwszejFunkcji", czasDrugiejFunkcji);
+    console.log("czasDrugiejFunkcji", czasDrugiejFunkcji);
     if (!stop) {
         secondSetTime = setInterval(() => {
             czasDrugiejFunkcji--;
             document.getElementById("countdown").textContent = czasDrugiejFunkcji;
+            minuty2 = Math.floor(czasDrugiejFunkcji % 3600 / 60);
+            sekundy2 = Math.floor(czasDrugiejFunkcji % 3600 % 60);
+            console.log("minuty", minuty2)
+            console.log("sekundy", sekundy2)
+            document.getElementById("countdownProper").textContent = minuty2 + " min " + sekundy2 + " sec";
             console.log("w setInterval", czasDrugiejFunkcji)
 
         }, 1000);
@@ -73,7 +86,7 @@ const secondRing = (czasDrugiejFunkcji) => {
 
 document.getElementById("clear").addEventListener("click", function () {
     document.getElementById("sessionTime").textContent = "10min/5min";
-    document.getElementById("countdown").textContent = "Odliczanie wstrzymane";
+    document.getElementById("countdownProper").textContent = "Odliczanie wstrzymane";
     document.getElementById("hold").textContent = "Wstrzymaj odliczanie";
     document.getElementById("button").disabled = false;
     stop = true;
